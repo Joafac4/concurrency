@@ -4,7 +4,7 @@ use matrix::Matrix;
 mod matrix;
 
 fn main() {
-    let m1 = create_matrix(10, 10000);
+    let m1 = create_matrix(10, 1000000);
 
     test_sum(&m1);
 

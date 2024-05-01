@@ -1,5 +1,5 @@
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         Matrix m = create(10, 10_000);
 
         System.out.println("Sum = " + m.sum());
@@ -8,8 +8,15 @@ public class Main {
 
         System.out.println("Sum = " + r.sum());
 
-        testSum(m);
+        //testSum(m);
         testAdd(m, m);
+
+        Matrix serialSum = m.addSerial(r);
+        Matrix parallelSum = m.addParallel(r);
+        System.out.println(serialSum.checkEquals(parallelSum.getValues()));
+        serialSum.printMtxValues();
+        System.out.println("now parallel");
+        parallelSum.printMtxValues();
     }
 
 
@@ -24,7 +31,7 @@ public class Main {
         System.out.println("Parallel 'add': " + (t2 - t1) / 1_000 + " ms");
     }
 
-    private static void testSum(Matrix m1) {
+    private static void testSum(Matrix m1)  {
         var t0 = System.nanoTime();
         var m3 = m1.sum();
         var t1 = System.nanoTime();
